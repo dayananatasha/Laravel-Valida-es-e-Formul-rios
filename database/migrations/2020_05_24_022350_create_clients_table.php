@@ -19,7 +19,7 @@ class CreateClientsTable extends Migration
             $table->string('document_number');
             $table->string('email');
             $table->string('phone');
-            $table->bolean('defaulter');
+            $table->boolean('defaulter');
             $table->date('date_birth');
             $table->char('sex');
             $table->enum('marital_status', array_keys(\App\Client::MARITAL_STATUS));
