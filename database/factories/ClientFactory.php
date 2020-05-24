@@ -5,9 +5,13 @@
 use App\AppClient;
 use Faker\Generator as Faker;
 
+require_once __DIR__ . '/../faker_data/document_number.php';
+
 $factory->define(AppClient::class, function (Faker $faker) {
+    $cpfs = cpfs();
     return [
         'name' => $faker->name,
+        'document_number' => array_rand($cpfs, 1),
         'email' => $faker->email,
         'phone' => $faker->phoneNumber,
         'defaulter' => rand(0, 1),
