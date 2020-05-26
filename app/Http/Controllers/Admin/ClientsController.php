@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 
@@ -13,7 +13,8 @@ class ClientsController extends Controller
      */
     public function index()
     {
-        //
+        $clients = \App\Client::all();
+        return view('admin.clients.index', compact('clients'));
     }
 
     /**
