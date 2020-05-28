@@ -29,3 +29,7 @@ Route::name('meu-nome')
     ->get('/rota-nomeada', function(){
         echo "Olá mundo!";
 });
+
+Route::get('/rota-nomeada1/qualquercoisa', function (){
+        echo "Olá mundo!";
+})->name('meu-nome1');

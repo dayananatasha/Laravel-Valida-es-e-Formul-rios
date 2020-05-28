@@ -38,6 +38,17 @@ class ClientsController extends Controller
      */
     public function store(Request $request)
     {
+        $maritalStatus = implode(',',array_keys(Client::MARITAL_STATUS));
+        $this->validate($request, [
+            'name' => 'required',
+            'document_number' => 'required',
+            'email' => 'required|email',
+            'phone' => 'required',
+            'date_birth' => 'required|date',
+            'marital_status' => "required|in:$maritalStatus",
+            'sex' => 'required|in:m,f',
+            'physical_disability' => 'max:255'
+        ]);
         $data = $request->all();
         $data['defaulter'] = $request->has('defaulter');
         Client::create($data);
