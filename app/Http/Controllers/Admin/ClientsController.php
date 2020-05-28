@@ -15,6 +15,7 @@ class ClientsController extends Controller
      */
     public function index()
     {
+        var_dump(route('meu-nome'));
         $clients = \App\Client::all();
         return view('admin.clients.index', compact('clients'));
     }
@@ -38,8 +39,7 @@ class ClientsController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-        $data['defaulter'] = 0;
-        $data['qualquer coisa'] = 'teste';
+        $data['defaulter'] = $request->has('defaulter');
         Client::create($data);
         return redirect()->to('/admin/clients');
 

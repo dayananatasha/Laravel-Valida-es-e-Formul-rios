@@ -24,3 +24,8 @@ Route::group([
     Route::resource('clients', 'ClientsController');
 
 });
+
+Route::name('meu-nome')
+    ->get('/rota-nomeada', function(){
+        echo "Olá mundo!";
+});
