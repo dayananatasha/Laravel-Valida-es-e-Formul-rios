@@ -27,7 +27,7 @@ class ClientsController extends Controller
      */
     public function create()
     {
-        return view('admin.clients.create');
+        return view('admin.clients.create',['client'=> new Client()]);
     }
 
     /**
@@ -109,6 +109,7 @@ class ClientsController extends Controller
             'date_birth' => 'required|date',
             'marital_status' => "required|in:$maritalStatus",
             'sex' => 'required|in:m,f',
-            'physical_disability' => 'max:255';
-        }]
+            'physical_disability' => 'max:255'
+        ]);
+    }
 }
