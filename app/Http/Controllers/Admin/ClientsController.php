@@ -54,7 +54,7 @@ class ClientsController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('admin.clients.show', compact('client'));
     }
 
     /**
@@ -77,7 +77,6 @@ class ClientsController extends Controller
      */
     public function update(Request $request, Client $client)
     {
-        $client = Client::findOrFail($id);
         $this->_validate($request);
         $data = $request->all();
         $data['defaulter'] = $request->has('defaulter');
