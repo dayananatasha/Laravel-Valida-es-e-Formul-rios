@@ -63,9 +63,8 @@ class ClientsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Client $client)
     {
-        $client = Client::findOrFail($id);
         return view('admin.clients.edit', compact('client'));
     }
 
@@ -76,7 +75,7 @@ class ClientsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Client $client)
     {
         $client = Client::findOrFail($id);
         $this->_validate($request);
