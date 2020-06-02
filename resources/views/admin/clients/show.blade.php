@@ -1,9 +1,10 @@
 @extends('layouts.layout')
 
 @section('content')
-    <h3>Ver Client</h3>
+    <h3>Ver Cliente</h3>
+    <a class="btn btn-primary" href="{{ route('clients.edit', ['client' => $client->id])}}">Editar</a>
+    <a class="btn btn-default" href="{{ route('clients.index', ['client' => $client->id])}}">Voltar</a>
     <br/><br/>
-    <a class="btn btn-default" href="{{ route('clients.edit')}}">Editar</a>
     <table class="table table-bordered">
         <tbody>
         <tr>
@@ -28,11 +29,29 @@
         </tr>
         <tr>
             <th scope="row">Estado Civil</th>
+            <td>
+                @switch($client->marital_status)
+                    @case(1)
+                        Solteiro
+                        @break
+
+                    @case(2)
+                        Casado
+                        @break
+
+                    @case(2)
+                        Divorciado
+                        @break
+                @endswitch
+            </td>
+        </tr>
+        <tr>
+            <th scope="row">Data Nasc.</th>
             <td>{{$client->date_birth}}</td>
         </tr>
         <tr>
             <th scope="row">Sexo</th>
-            <td>{{$client->sex}}</td>
+            <td>{{$client->sex == 'm' ? 'Masculino' : 'Feminino'}}</td>
         </tr>
         <tr>
             <th scope="row">Def. Física</th>
@@ -40,7 +59,7 @@
         </tr>
         <tr>
             <th scope="row">Inadimplente</th>
-            <td>{{$client->defaulter}}</td>
+            <td>{{$client->defaulter?'Sim' : 'Não'}}</td>
         </tr>
         </tbody>
     </table>

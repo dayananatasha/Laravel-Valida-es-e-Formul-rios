@@ -1,7 +1,7 @@
 @extends('layouts.layout')
 
 @section('content')
-    <h3>Novo cliente</h3>
+    <h3>Editar cliente</h3>
     @include('admin.clients._form_error')
     <form method="post" action="{{ route('clients.update', ['client' => $client->id])}}">
         {{method_field('PUT')}}
