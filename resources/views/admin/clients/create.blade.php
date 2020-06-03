@@ -2,14 +2,11 @@
 
 @section('content')
     <h3>Novo cliente</h3>
-    @if($errors->any())
-        <ul class="alert alert-danger">
-            @foreach ($errors->all(); as $error)
-                <li>{{$error}}</li>
-            @endforeach
-        </ul>
-    @endif
-    <form method="post" action="/admin/clients">
+    <h4>{{$clientType == \App\Client::TYPE_INDIVIDUAL? 'Pessoa Física' : 'Pessoa Jurídica'}}</h4>
+    <a href="{{route('clients.create'.['client_type' => \App\Client::TYPE_INDIVIDUAL])}}">Pessoa Física</a> |
+    <a href="{{route('clients.create'.['client_type' => \App\Client::TYPE_LEGAL])}}">Pessoa Jurídica</a>
+    @include('form._form_error')
+    <form method="post" action="{{ route('clients.store') }}">
         @include('admin.clients._form')
         <button type="submit" class="btn btn_default">Criar</button>
     </form>

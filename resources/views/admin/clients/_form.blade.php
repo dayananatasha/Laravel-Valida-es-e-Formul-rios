@@ -19,6 +19,7 @@
     <input class="form-control" id="phone" name="phone" value="{{old('phone', $client->phone)}}">
 </div>
 
+@if($clientType == \App\Client::TYPE_INDIVIDUAL)
 @php
     $maritalStatus = $client->marital_status;
 @endphp
@@ -32,7 +33,6 @@
         <option value="3" {{old('marital_status', $maritalStatus) == 3 ? 'selected="selected"':''}}>Divorciado</option>
     </select>
     </div>
-
 <div class="form-group">
     <label for="date_birth">Data Nasc.</label>
     <input class="form-control" id="date_birth" name="date_birth" type="date" value="{{old('date_birth', $client->date_birth)}}">
@@ -59,7 +59,13 @@
     <input class="form-control" id="physical_disability" name="physical_disability"
         value="{{old('physical_disability', $client->physical_disability)}}">
 </div>
+@else
+    <div class="form-group">
+        <label for="company_name">Nome Fantasia</label>
+        <input class="form-control" id="company_name" name="company_name" value="{{old('company_name', $client->company_name)}}">
+    </div>
 
+@endif
 <div class="checkbox">
     <label>
     <input id="defaulter" name="defaulter" type="checkbox" {{old('defaulter', $client->defaulter) ?'checked="checked"':''}}>Inadimplente?
