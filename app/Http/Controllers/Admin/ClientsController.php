@@ -39,6 +39,7 @@ class ClientsController extends Controller
      */
     public function store(Request $request)
     {
+
         $data = $this->_validate($request);
         $data['defaulter'] = $request->has('defaulter');
         $data['client_type'] = Client::getClientType($request->client_type);
@@ -101,9 +102,16 @@ class ClientsController extends Controller
 
     protected function _validate(Request $request){
         $clientType = Client::getClientType($request->client_type);
+        $client = $request->route('client');
+        if ($client instanceof Client){
+            $documentRule = "required|unique:clients,document_number,$client->id";
+        } else {
+            $documentRule = "required|unique:clients,document_number";
+        }
+
         $rules = [
             'name' => 'required',
-            'document_number' => 'required',
+            'document_number' => $documentRule,
             'email' => 'required|email',
             'phone' => 'required',
         ];
