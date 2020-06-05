@@ -102,9 +102,10 @@ class ClientsController extends Controller
 
     protected function _validate(Request $request){
         $clientType = Client::getClientType($request->client_type);
+        $documentNumberType = $clientType == Client::TYPE_INDIVIDUAL?'cpf':'cnpj';
         $client = $request->route('client');
         if ($client instanceof Client){
-            $documentRule = "required|unique:clients,document_number,$client->id";
+            $documentRule = "required|unique:clients,document_number,$client->id|document_number:$documentNumberType";
         } else {
             $documentRule = "required|unique:clients,document_number";
         }
